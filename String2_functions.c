@@ -4,6 +4,7 @@
  * @cs: One string
  * @ct: Another string
  * @count: The maximum number of bytes to compare
+ * Return: 0 in success
  */
 int _strncmp(char *cs, char *ct, size_t count)
 {
