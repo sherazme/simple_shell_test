@@ -42,7 +42,7 @@ int main(int ac, char **argv)
 		/* Allocate space to hold the array of strings */
 		argv = malloc(sizeof(char *) * num_tokens);
 		argv_store(argv, user_input_cp, delimit);
-		if (argv[0] == "exit")
+		if (_strcmp(argv[0], "exit") == 0)
 			break;
 		/* execute the command */
 		execute_command(argv);

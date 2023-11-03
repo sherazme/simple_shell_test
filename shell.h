@@ -22,6 +22,8 @@ int _strlen(char *str);
 int strtoknum(char *str, const char *delim);
 char *_strdup(char *s);
 
+int _strcmp(char *s1, char *s2);/*in helping file*/
+
 /*other functions*/
 void argv_store(char **argv, char *str, const char *delim);
 void _print(char *msg);
