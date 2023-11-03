@@ -24,7 +24,7 @@ char * _strdup (const char *s);
 
 /*other functions*/
 void argv_store(char **argv, char *str, const char *delim);
-void _print(const char *msg);
+void _print(char *msg);
 char *_memcpy(char *dest, char *src, unsigned int n);
 
 #endif /* SHELL_H */
