@@ -7,7 +7,7 @@ void execmd(char **argv)
 
 	if (child_pid == -1)
 	{
-		printf("Error forking process.\n");
+		_print("Error forking process.\n");
 		exit(EXIT_FAILURE);
 	}
 	else if (child_pid == 0)

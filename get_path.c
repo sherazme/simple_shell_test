@@ -20,7 +20,7 @@ char *get_location(char *command)
 			/* Get the length of the directory*/
 			directory_length = strlen(path_token);
 			/* allocate memory for storing command name and directory name */
-			file_path = malloc(command_length + directory_length + 2); 
+			file_path = malloc(command_length + directory_length + 2);
 			/* NB: we added 2 for the slash and null character*/
 			/* build command by copying directory path and concatenate command*/
 			strcpy(file_path, path_token);
@@ -31,10 +31,8 @@ char *get_location(char *command)
 			if (stat(file_path, &buffer) == 0)
 			{
 			/* return value of 0 means success implying that the file_path is valid*/
-
 				/* free up allocated memory before returning your file_path */
 				free(path_copy);
-
 				return (file_path);
 			}
 			else
@@ -44,7 +42,7 @@ char *get_location(char *command)
 				path_token = strtok(NULL, ":");
 			}
 		}
-		/* if we don't get any file_path that exists for the command, we return NULL but we need to free up memory for path_copy */
+		/* if file_path does not exists for command return NULL and free memory path_copy*/
 		free(path_copy);
 		/* before we exit without luck, let's see if the command itself is a file_path that exists */
 		if (stat(command, &buffer) == 0)

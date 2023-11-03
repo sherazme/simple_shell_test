@@ -12,12 +12,12 @@ int main(int ac, char **argv)
 	/* Create a loop for the shell's prompt */
 	while (1)
 	{
-		printf("%s", prompt);
+		_print("%s", prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
 		/* check if the getline failed or reached EOF or user use CTRL + D */
 		if (nchars_read == -1)
 		{
-			printf("Exiting shell....\n");
+			_print("Exiting shell....\n");
 			return (-1);
 		}
 		/* allocate space for a copy of the lineptr */
@@ -42,4 +42,3 @@ int main(int ac, char **argv)
 	free(lineptr);
 	return (0);
 }
-

@@ -86,30 +86,3 @@ int strtoknum(char *str, const char *delim)
 
 }
 
-/**
- * argv_store - Store each token in the argv array
- *
- * @argv: Argv array pointer
- *
- * @str: String to tokenize.
- *
- * @delim: delemter
- *
- * Return: void
- */
-void argv_store(char **argv, char *str, const char *delim)
-{
-	int i;
-	char *token;
-
-	token = strtok(str, delim);
-
-	for (i = 0; token != NULL; i++)
-	{
-		argv[i] = malloc(sizeof(char) * strlen(token));
-		strcpy(argv[i], token);
-
-		token = strtok(NULL, delim);
-	}
-		argv[i] = NULL;
-}
