@@ -7,14 +7,14 @@ int main(int ac, char **argv)
 	ssize_t nchars_read;
 	const char *delim = " \n";
 	int num_tokens = 0;
-	
+
 	(void)ac;/* declaring void variables */
 	/* Create a loop for the shell's prompt */
 	while (1)
 	{
 		printf("%s", prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
-		/* check if the getline function failed or reached EOF or user use CTRL + D */
+		/* check if the getline failed or reached EOF or user use CTRL + D */
 		if (nchars_read == -1)
 		{
 			printf("Exiting shell....\n");

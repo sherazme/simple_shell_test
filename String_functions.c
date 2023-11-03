@@ -73,7 +73,7 @@ int strtoknum(char *str, const char *delim)
 {
 	char *token;
 	int num_tokens = 0;
-	
+
 	token = strtok(str, delim);
 
 	while (token != NULL)
@@ -83,7 +83,7 @@ int strtoknum(char *str, const char *delim)
 	}
 	num_tokens++;
 	return (num_tokens);
-		
+	
 }
 
 /**
@@ -101,7 +101,7 @@ void argv_store(char **argv, char *str, const char *delim)
 {
 	int i;
 	char *token;
-	
+
 	token = strtok(str, delim);
 
 	for (i = 0; token != NULL; i++)
