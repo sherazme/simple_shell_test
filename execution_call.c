@@ -31,7 +31,7 @@ void execmd(char **argv)
 	}
 	else
 	{
-		// Parent process
+		/* Parent process*/
 		wait(NULL);
 	}
 
