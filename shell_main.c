@@ -1,13 +1,10 @@
 #include "shell.h"
-
 /**
  * main - Runs a simple UNIX command interpreter.
  * @ac: The number of arguments supplied to the program.
  * @argv: An array of pointers to the arguments.
- *
  * Return: 0.
  */
-
 int main(int ac, char **argv)
 {
 	char *sh_prompt = "(SZshell) $ ", *user_input = NULL, *user_input_cp = NULL;
@@ -17,7 +14,6 @@ int main(int ac, char **argv)
 	int num_tokens = 0;
 
 	(void)ac;/* declaring void variables */
-	/* Create a loop for the shell's prompt */
 	while (1)
 	{
 		_print(sh_prompt);
@@ -35,15 +31,14 @@ int main(int ac, char **argv)
 			perror("tsh: memory allocation error");
 			return (-1);
 		}
-		/* copy user_input to user_input_cp */
 		_strcpy(user_input_cp, user_input);
 		/********** split the string (user_input) into an array of words ********/
 		num_tokens = strtoknum(user_input, delimit);
-		/* Allocate space to hold the array of strings */
-		argv = malloc(sizeof(char *) * num_tokens);
+		argv = malloc(sizeof(char *) * num_tokens);/*to hold the array of strings */
 		argv_store(argv, user_input_cp, delimit);
 		if (_strcmp(argv[0], "exit") == 0)
 			break;
+		get_builtin(argv);
 		/* execute the command */
 		execute_command(argv);
 	}
