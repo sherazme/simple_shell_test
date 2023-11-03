@@ -10,8 +10,8 @@
 #include <sys/wait.h>
 
 /*main functions*/
-void execmd(char **argv);
-char *get_location(char *command);
+void execute_command(char **argv);
+char *search_path(char *command);
 
 /*helping functions*/
 

@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * get_location - search command path in environment path.
+ * search_path - search command path in environment path.
  *
  * @commad: command to search for.
 
  * Return: command full path.
  */
  
-char *get_location(char *command)
+char *search_path(char *command)
 {
 	char *path, *path_copy, *path_token, *file_path;
 	int command_length, directory_length;

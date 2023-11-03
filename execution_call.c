@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * execmd - execute command.
+ * execute_command - execute command.
  *
  * @argv: array with full command.
 
  * Return: command full path.
  */
 
-void execmd(char **argv)
+void execute_command(char **argv)
 {
 	char *command = NULL, *actual_command = NULL;
 	pid_t child_pid = fork();
@@ -27,7 +27,7 @@ void execmd(char **argv)
 			command = argv[0];
 
 			/* generate the path to this command before passing it to execve */
-			actual_command = get_location(command);
+			actual_command = search_path(command);
 
 			/* execute the actual command with execve */
 			if (execve(actual_command, argv, NULL) == -1)

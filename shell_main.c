@@ -35,7 +35,7 @@ int main(int ac, char **argv)
 		argv = malloc(sizeof(char *) * num_tokens);
 		argv_store(argv, lineptr_copy, delim);
 		/* execute the command */
-		execmd(argv);
+		execute_command(argv);
 	}
 	/* free up allocated memory */
 	free(lineptr_copy);
