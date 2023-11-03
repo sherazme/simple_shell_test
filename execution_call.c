@@ -4,7 +4,6 @@
  * execute_command - execute command.
  *
  * @argv: array with full command.
-
  * Return: command full path.
  */
 

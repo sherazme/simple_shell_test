@@ -7,7 +7,7 @@
  *
  * Return: 0.
  */
- 
+
 int main(int ac, char **argv)
 {
 	char *prompt = "(SZshell) $ ", *lineptr = NULL, *lineptr_copy = NULL;
