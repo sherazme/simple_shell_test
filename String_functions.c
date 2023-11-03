@@ -69,7 +69,7 @@ int _strlen(char *str)
  *
  * Return: Lenght of str.
  */
-int strtoknum(char *str, char *delim)
+int strtoknum(char *str, const char *delim)
 {
 	char *token;
 	int num_tokens = 0;
@@ -97,7 +97,7 @@ int strtoknum(char *str, char *delim)
  *
  * Return: void
  */
-void argv_store(char *argv, char *str, char *delim)
+void argv_store(char *argv, char *str, const char *delim)
 {
 	int i;
 	char *token;
