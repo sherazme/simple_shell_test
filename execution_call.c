@@ -3,6 +3,7 @@
 void execmd(char **argv){
     char *command = NULL, *actual_command = NULL;
 
+	printf("begin exec");
     if (argv){
         /* get the command */
         command = argv[0];
@@ -14,6 +15,7 @@ void execmd(char **argv){
         if (execve(actual_command, argv, NULL) == -1){
             perror("Error:");
         }
+		printf("done exec");
     }
 
 }
