@@ -28,7 +28,7 @@ int main(int ac, char **argv)
 			return (-1);
 		}
 		/* copy lineptr to lineptr_copy */
-		strcpy(lineptr_copy, lineptr);
+		_strcpy(lineptr_copy, lineptr);
 		/********** split the string (lineptr) into an array of words ********/
 		num_tokens = strtoknum(lineptr, delim);
 		/* Allocate space to hold the array of strings */

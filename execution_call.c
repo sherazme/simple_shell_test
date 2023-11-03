@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * execmd - execute command.
+ *
+ * @argv: array with full command.
+
+ * Return: command full path.
+ */
+
 void execmd(char **argv)
 {
 	char *command = NULL, *actual_command = NULL;
