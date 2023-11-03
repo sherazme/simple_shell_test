@@ -46,7 +46,6 @@ int main(int ac, char **argv)
             token = strtok(NULL, delim);
         }
         num_tokens++;
-		printf("token");
 
         /* Allocate space to hold the array of strings */
         argv = malloc(sizeof(char *) * num_tokens);
@@ -62,11 +61,9 @@ int main(int ac, char **argv)
             token = strtok(NULL, delim);
         }
         argv[i] = NULL;
-		printf("array");
 
         /* execute the command */
         execmd(argv);
-		printf("end exe");
     }
 
     /* free up allocated memory */
