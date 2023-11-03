@@ -16,6 +16,6 @@ char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *str);
 int strtoknum(char *str, const char *delim);
-void argv_store(char *argv, char *str, const char *delim);
+void argv_store(char **argv, char *str, const char *delim);
 
 #endif /* SHELL_H */

@@ -97,7 +97,7 @@ int strtoknum(char *str, const char *delim)
  *
  * Return: void
  */
-void argv_store(char *argv, char *str, const char *delim)
+void argv_store(char **argv, char *str, const char *delim)
 {
 	int i;
 	char *token;
