@@ -18,7 +18,7 @@ char *get_location(char *command)
 	if (path)
 	{
 		/* Duplicate the path string*/
-		path_copy = strdup(path);
+		path_copy = _strdup(path);
 		/* Get length of the command that was passed */
 		command_length = _strlen(command);
 		/* Let's break down the path variable and get all the directories available*/

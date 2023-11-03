@@ -86,3 +86,21 @@ int strtoknum(char *str, const char *delim)
 
 }
 
+
+/**
+ * _strdup - Duplicate S, returning an identical malloc'd string.
+ *
+ * @str: String to tokenize.
+ *
+ * @delim: delemter
+ *
+ * Return: Lenght of str.
+ *//* Duplicate S, returning an identical malloc'd string.  */
+char * _strdup (const char *s)
+{
+	size_t len = strlen (s) + 1;
+	void *new = malloc (len);
+	if (new == NULL)
+		return NULL;
+	return (char *) _memcpy (new, s, len);
+}

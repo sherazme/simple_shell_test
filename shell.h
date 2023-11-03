@@ -20,9 +20,11 @@ char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *str);
 int strtoknum(char *str, const char *delim);
+char * _strdup (const char *s);
 
 /*other functions*/
 void argv_store(char **argv, char *str, const char *delim);
-void _print(const char *msg)
+void _print(const char *msg);
+char *_memcpy(char *dest, char *src, unsigned int n);
 
 #endif /* SHELL_H */
