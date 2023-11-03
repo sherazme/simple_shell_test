@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * main - Runs a simple UNIX command interpreter.
+ * @ac: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: 0.
+ */
+ 
 int main(int ac, char **argv)
 {
 	char *prompt = "(SZshell) $ ", *lineptr = NULL, *lineptr_copy = NULL;

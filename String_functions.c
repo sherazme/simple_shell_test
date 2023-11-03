@@ -94,12 +94,12 @@ int strtoknum(char *str, const char *delim)
  *
  * Return: identical malloc'd string.
  */
-char *_strdup (char *s)
+char *_strdup(char *s)
 {
 	size_t len = _strlen(s) + 1;
 	void *new = malloc(len);
-	
+
 	if (new == NULL)
-		return NULL;
+		return (NULL);
 	return ((char *) _memcpy(new, s, len));
 }
