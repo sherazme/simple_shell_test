@@ -11,8 +11,7 @@ int main(int ac, char **argv)
 	char *token;
 	int i;
 
-	/* declaring void variables */
-	(void)ac;
+	(void)ac;/* declaring void variables */
 
 	/* Create a loop for the shell's prompt */
 	while (1)
