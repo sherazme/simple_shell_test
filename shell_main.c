@@ -2,17 +2,13 @@
 
 int main(int ac, char **argv)
 {
-	char *prompt = "(SZshell) $ ";
-	char *lineptr = NULL, *lineptr_copy = NULL;
+	char *prompt = "(SZshell) $ ", *lineptr = NULL, *lineptr_copy = NULL, *token;
 	size_t n = 0;
 	ssize_t nchars_read;
 	const char *delim = " \n";
-	int num_tokens = 0;
-	char *token;
-	int i;
-
+	int num_tokens = 0, i;
+	
 	(void)ac;/* declaring void variables */
-
 	/* Create a loop for the shell's prompt */
 	while (1)
 	{
@@ -24,7 +20,6 @@ int main(int ac, char **argv)
 			printf("Exiting shell....\n");
 			return (-1);
 		}
-
 		/* allocate space for a copy of the lineptr */
 		lineptr_copy = malloc(sizeof(char) * nchars_read);
 		if (lineptr_copy == NULL)
@@ -34,40 +29,17 @@ int main(int ac, char **argv)
 		}
 		/* copy lineptr to lineptr_copy */
 		strcpy(lineptr_copy, lineptr);
-
 		/********** split the string (lineptr) into an array of words ********/
-		/* calculate the total number of tokens */
-		token = strtok(lineptr, delim);
-
-		while (token != NULL)
-		{
-			num_tokens++;
-			token = strtok(NULL, delim);
-		}
-		num_tokens++;
-
+		num_tokens = strtoknum(char lineptr, delim)
 		/* Allocate space to hold the array of strings */
 		argv = malloc(sizeof(char *) * num_tokens);
-
-		/* Store each token in the argv array */
-		token = strtok(lineptr_copy, delim);
-
-		for (i = 0; token != NULL; i++)
-		{
-			argv[i] = malloc(sizeof(char) * strlen(token));
-			strcpy(argv[i], token);
-
-			token = strtok(NULL, delim);
-		}
-		argv[i] = NULL;
-
+		argv_store(argv, lineptr_copy, delim);
 		/* execute the command */
 		execmd(argv);
 	}
-
 	/* free up allocated memory */
 	free(lineptr_copy);
 	free(lineptr);
-
 	return (0);
 }
+

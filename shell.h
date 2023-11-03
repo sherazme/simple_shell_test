@@ -15,5 +15,7 @@ char *get_location(char *command);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 int _strlen(char *str);
+int strtoknum(char *str, char *delim);
+void argv_store(int *argv, char *str, char *delim);
 
 #endif /* SHELL_H */

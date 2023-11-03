@@ -59,3 +59,57 @@ int _strlen(char *str)
 
 	return (len);
 }
+
+/**
+ * strtoknum - calculate the total number of tokens.
+ *
+ * @str: String to tokenize.
+ *
+ * @delim: delemter
+ *
+ * Return: Lenght of str.
+ */
+int strtoknum(char *str, char *delim)
+{
+	char *token;
+	int num_tokens = 0;
+	
+	token = strtok(str, delim);
+
+	while (token != NULL)
+	{
+		num_tokens++;
+		token = strtok(NULL, delim);
+	}
+	num_tokens++;
+	return (num_tokens);
+		
+}
+
+/**
+ * argv_store - Store each token in the argv array
+ *
+ * @argv: Argv array pointer
+ *
+ * @str: String to tokenize.
+ *
+ * @delim: delemter
+ *
+ * Return: void
+ */
+void argv_store(int *argv, char *str, char *delim)
+{
+	int i;
+	char *token;
+	
+	token = strtok(str, delim);
+
+	for (i = 0; token != NULL; i++)
+	{
+		argv[i] = malloc(sizeof(char) * strlen(token));
+		strcpy(argv[i], token);
+
+		token = strtok(NULL, delim);
+	}
+		argv[i] = NULL;
+}
