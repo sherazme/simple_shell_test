@@ -83,7 +83,7 @@ int strtoknum(char *str, const char *delim)
 	}
 	num_tokens++;
 	return (num_tokens);
-	
+
 }
 
 /**
