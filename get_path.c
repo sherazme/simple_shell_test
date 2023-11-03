@@ -7,7 +7,7 @@
 
  * Return: command full path.
  */
- 
+
 char *search_path(char *command)
 {
 	char *path, *path_copy, *path_token, *file_path;
@@ -50,9 +50,9 @@ char *search_path(char *command)
 				path_token = strtok(NULL, ":");
 			}
 		}
-		/* if file_path does not exists for command return NULL and free memory path_copy*/
+		/* if file_path exists for command return NULL and free memory path_copy*/
 		free(path_copy);
-		/* before we exit without luck, let's see if the command itself is a file_path that exists */
+		/* before exit check if the command itself is a file_path that exists*/
 		if (stat(command, &buffer) == 0)
 		{
 			return (command);

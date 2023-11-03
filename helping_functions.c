@@ -35,9 +35,9 @@ void argv_store(char **argv, char *str, const char *delim)
  *
  * Return: void
  */
-void _print(char *msg) 
+void _print(char *msg)
 {
-    write (STDOUT_FILENO, msg, _strlen(msg));
+	write(STDOUT_FILENO, msg, _strlen(msg));
 }
 
 /**
