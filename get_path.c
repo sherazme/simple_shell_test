@@ -10,49 +10,49 @@
 
 char *search_path(char *command)
 {
-	char *path, *path_copy, *path_token, *file_path;
-	int command_length, directory_length;
+	char *path, *path_cp, *token, *exe_file_path;
+	int cmd_len, dir_len;
 	struct stat buffer;
 
 	path = getenv("PATH");
 	if (path)
 	{
 		/* Duplicate the path string*/
-		path_copy = _strdup(path);
+		path_cp = _strdup(path);
 		/* Get length of the command that was passed */
-		command_length = _strlen(command);
+		cmd_len = _strlen(command);
 		/* Let's break down the path variable and get all the directories available*/
-		path_token = strtok(path_copy, ":");
-		while (path_token != NULL)
+		token = strtok(path_cp, ":");
+		while (token != NULL)
 		{
 			/* Get the length of the directory*/
-			directory_length = _strlen(path_token);
+			dir_len = _strlen(token);
 			/* allocate memory for storing command name and directory name */
-			file_path = malloc(command_length + directory_length + 2);
+			exe_file_path = malloc(cmd_len + dir_len + 2);
 			/* NB: we added 2 for the slash and null character*/
 			/* build command by copying directory path and concatenate command*/
-			_strcpy(file_path, path_token);
-			_strcat(file_path, "/");
-			_strcat(file_path, command);
-			_strcat(file_path, "\0");
+			_strcpy(exe_file_path, token);
+			_strcat(exe_file_path, "/");
+			_strcat(exe_file_path, command);
+			_strcat(exe_file_path, "\0");
 			/* test if file path actually exists otherwise try the next directory*/
-			if (stat(file_path, &buffer) == 0)
+			if (stat(exe_file_path, &buffer) == 0)
 			{
-			/* return value of 0 means success implying that the file_path is valid*/
-				/* free up allocated memory before returning your file_path */
-				free(path_copy);
-				return (file_path);
+			/* return value of 0 means success implying that the exe_file_path is valid*/
+				/* free up allocated memory before returning your exe_file_path */
+				free(path_cp);
+				return (exe_file_path);
 			}
 			else
 			{
-				/* free up the file_path memory so we can check for another path*/
-				free(file_path);
-				path_token = strtok(NULL, ":");
+				/* free up the exe_file_path memory so we can check for another path*/
+				free(exe_file_path);
+				token = strtok(NULL, ":");
 			}
 		}
-		/* if file_path exists for command return NULL and free memory path_copy*/
-		free(path_copy);
-		/* before exit check if the command itself is a file_path that exists*/
+		/* if exe_file_path exists for command return NULL and free memory path_copy*/
+		free(path_cp);
+		/* before exit check if the command itself is a exe_file_path that exists*/
 		if (stat(command, &buffer) == 0)
 		{
 			return (command);
