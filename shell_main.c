@@ -12,7 +12,7 @@ int main(int ac, char **argv)
 	/* Create a loop for the shell's prompt */
 	while (1)
 	{
-		_print("%s", prompt);
+		_print(prompt);
 		nchars_read = getline(&lineptr, &n, stdin);
 		/* check if the getline failed or reached EOF or user use CTRL + D */
 		if (nchars_read == -1)
