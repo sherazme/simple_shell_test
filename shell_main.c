@@ -37,7 +37,7 @@ int main(int ac, char **argv)
 		argv = malloc(sizeof(char *) * num_tokens);/*to hold the array of strings */
 		argv_store(argv, user_input_cp, delimit);
 		if (_strcmp(argv[0], "exit") == 0)
-			break;
+			exit(atoi(argv[1]));
 		get_builtin(argv);
 		/* execute the command */
 		execute_command(argv);
