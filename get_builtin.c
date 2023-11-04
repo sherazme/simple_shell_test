@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 /**
  * get_builtin - to handle all builtin
  * @argv: the command
@@ -7,7 +8,10 @@
 int get_builtin(char **argv)
 {
 	if (_strcmp(argv[0], "env") == 0)
+	{
 		print_env();
+		return (0);
+	}
 	else if (_strcmp(argv[0], "setenv") == 0)
 	{
 		char *name = argv[1];
@@ -17,8 +21,17 @@ int get_builtin(char **argv)
 		if (_getenv(name) != NULL)
 			overwrite = 1;
 		_setenv(name, value, overwrite);
+		return (0);
 	}
-	return (0);
+	else if (_strcmp(argv[0], "unsetenv") == 0)
+	{
+		char *name = argv[1];
+
+		if (_getenv(name) != NULL)
+			_unsetenv(name);
+		return (0);
+	}
+	return (-1);
 }
 /**
  * print_env - that print the each environment variable
@@ -78,11 +91,14 @@ int _setenv(char *varName, char *varValue, int overwrite)
 	char *new_env;
 
 	if (!varName || !varValue)
+	{
+		_print("setenv: Invalid variable name or the value\n");
 		return (-1);
+	}
 	while (environ[i])
 	{
 		len = _strlen(varName);
-		if (_strncmp(environ[i], varName, len) == 0)
+		if (strncmp(environ[i], varName, len) == 0)
 		{
 			if (overwrite)
 			{
@@ -105,4 +121,34 @@ int _setenv(char *varName, char *varValue, int overwrite)
 	environ[i + 1] = NULL;
 	return (0);
 }
+/**
+ * _unsetenv - to remove the environment variabl
+ * @varName: the neme of environment variabl
+ * Return: 0 in success
+ */
+int _unsetenv(char *varName)
+{
+	int i = 0, len = 0;
 
+	if (!varName)
+		return (-1);
+	while (environ[i]) 
+	{
+		len = _strlen(varName);
+		if (_strncmp(environ[i], varName, len) == 0 && environ[i][len] == '=')
+		{
+			/* Found the environment variable, remove it*/
+			free(environ[i]);
+			environ[i] = NULL;
+			/* Shift the remaining variables to fill the gap*/
+			while (environ[i + 1])
+			{
+				environ[i] = environ[i + 1];
+				i++;
+			}
+			return (0);
+		}
+		i++;
+	}
+	return (0);
+}

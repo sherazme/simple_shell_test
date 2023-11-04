@@ -35,4 +35,5 @@ void print_env(void);
 int get_builtin(char **argv);
 char *_getenv(char *env_var);
 int _setenv(char *varName, char *varValue, int overwrite);
+int _unsetenv(char *varName);
 #endif /* SHELL_H */

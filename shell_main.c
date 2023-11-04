@@ -39,8 +39,8 @@ int main(int ac, char **argv)
 		if (_strcmp(argv[0], "exit") == 0)
 			exit(atoi(argv[1]));
 		get_builtin(argv);
-		/* execute the command */
-		execute_command(argv);
+		if (get_builtin(argv) == -1)
+			execute_command(argv);/* execute the command */
 	}
 	/* free up allocated memory */
 	free(user_input_cp);
