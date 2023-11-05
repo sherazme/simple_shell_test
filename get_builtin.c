@@ -31,6 +31,16 @@ int get_builtin(char **argv)
 			_unsetenv(name);
 		return (0);
 	}
+	else if (_strcmp(argv[0], "cd") == 0)
+	{
+		char *name_dir;
+
+		if (argv[1] == NULL)
+			name_dir = _getenv("HOME");
+		else
+			name_dir = argv[1];
+		_cd(name_dir);
+	}
 	return (-1);
 }
 /**
@@ -132,7 +142,7 @@ int _unsetenv(char *varName)
 
 	if (!varName)
 		return (-1);
-	while (environ[i]) 
+	while (environ[i])
 	{
 		len = _strlen(varName);
 		if (_strncmp(environ[i], varName, len) == 0 && environ[i][len] == '=')

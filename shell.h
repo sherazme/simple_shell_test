@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+#define BUF 1024
 extern char **environ;
 
 /*main functions*/
@@ -36,4 +37,7 @@ int get_builtin(char **argv);
 char *_getenv(char *env_var);
 int _setenv(char *varName, char *varValue, int overwrite);
 int _unsetenv(char *varName);
+int _cd(char *name);
+void update_pwd(char *pwd_new);
+
 #endif /* SHELL_H */
