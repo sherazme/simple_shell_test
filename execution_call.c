@@ -10,36 +10,36 @@
 void execute_command(char **argv)
 {
 	char *command = NULL, *exe_command = NULL;
-	pid_t cpid = fork();
+	pid_t cpid;
 
-	if (cpid == -1)
+	if (argv)
 	{
-		_print("Error forking process.\n");
-		exit(EXIT_FAILURE);
-	}
-	else if (cpid == 0)
-	{
+		/* get the command */
+		command = argv[0];
 
-		if (argv)
+		/* generate the path to this command before passing it to execve */
+		exe_command = search_path(command);
+			
+		cpid = fork();
+
+		if (cpid == -1)
 		{
-			/* get the command */
-			command = argv[0];
-
-			/* generate the path to this command before passing it to execve */
-			exe_command = search_path(command);
-
+			_print("Error forking process.\n");
+			exit(EXIT_FAILURE);
+		}
+		else if (cpid == 0)
+		{
 			/* execute the actual command with execve */
 			if (execve(exe_command, argv, NULL) == -1)
 			{
 				perror("Error:");
 			}
 		}
-
-	}
-	else
-	{
-		/* Parent process*/
-		wait(NULL);
+		else
+		{
+			/* Parent process*/
+			wait(NULL);
+		}
 	}
 
 }
