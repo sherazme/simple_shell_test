@@ -11,49 +11,42 @@ int _cd(char *name)
 
 	if (_strcmp(name, "-") == 0)
 	{/* Handle 'cd -'*/
-		char *temp = pr_dir;
-
-		pr_dir[0] = '\0';/*Clear the previous directory*/
-		if (temp[0] != '\0')
+		if (pr_dir[0] != '\0')
 		{
-			_print(temp); /* Print the directory being switched to*/
+			_print(pr_dir); /* Print the directory being switched to*/
 			_print("\n");
-			chdir(temp);
-			if (chdir(temp) != 0)
+			if (chdir(pr_dir) != 0)
 			{
-				_print("cd: Cannot change directory to\n");
-				_print(temp);
-				_print("\n");
-				return (-1);
+				_print("cd: Cannot change directory \n");
+				return (0);
 			}
-			getcwd(cwd, sizeof(cwd));
+		}
+		else
+		{
+			_print("cd: No previous directory to switch to\n");
+			return (0);
 		}
 	}
 	else
 	{
-		chdir(name);
 		if (chdir(name) != 0)/*change directory*/
 		{
-			_print("cd: Cannot change directory to\n");
-			_print(name);
-			return (-1);
+			_print("cd: Cannot change directory \n");
+			return (0);
 		}
-		getcwd(cwd, sizeof(cwd));
 	}
-
 	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
 		_print("cd: Error getting current working directory\n");
-		return (-1);
+		return (0);
 	}
-
 	_strcpy(pr_dir, cwd);
 	update_pwd(cwd);
 	return (0);
 }
 /**
  * update_pwd - to update current working directory
- * @new: the new pwd
+ * @pwd_new: the new pwd
  * Return: void
  */
 void update_pwd(char *pwd_new)
@@ -68,4 +61,5 @@ void update_pwd(char *pwd_new)
 	{
 		_print("cd: Error updating PWD\n");
 	}
+
 }

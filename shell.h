@@ -24,7 +24,7 @@ int _strlen(char *str);
 int strtoknum(char *str, const char *delim);
 char *_strdup(char *s);
 int _strncmp(char *cs, char *ct, size_t count);
-int _strcmp(char *s1, char *s2);/*in helping file*/
+int _strcmp(const char *s1, const char *s2);/*in helping file*/
 
 /*other functions*/
 void argv_store(char **argv, char *str, const char *delim);
@@ -34,7 +34,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 /*handle builtin*/
 void print_env(void);
 int get_builtin(char **argv);
-char *_getenv(char *env_var);
+char *_getenv(const char *env_var);
 int _setenv(char *varName, char *varValue, int overwrite);
 int _unsetenv(char *varName);
 int _cd(char *name);

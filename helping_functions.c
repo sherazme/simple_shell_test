@@ -67,7 +67,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
  * Description: function compare words
  * Return: destination
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	/*int i = 0, strlength = 0;*/
 

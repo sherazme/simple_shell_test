@@ -38,7 +38,6 @@ int main(int ac, char **argv)
 		argv_store(argv, user_input_cp, delimit);
 		if (_strcmp(argv[0], "exit") == 0)
 			exit(atoi(argv[1]));
-		get_builtin(argv);
 		if (get_builtin(argv) == -1)
 			execute_command(argv);/* execute the command */
 	}

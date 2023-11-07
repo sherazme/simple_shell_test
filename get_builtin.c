@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <string.h>
 /**
  * get_builtin - to handle all builtin
  * @argv: the command
@@ -14,32 +13,38 @@ int get_builtin(char **argv)
 	}
 	else if (_strcmp(argv[0], "setenv") == 0)
 	{
-		char *name = argv[1];
-		char *value = argv[2];
-		int overwrite = 0;
+		if (argv[1] == NULL || argv[2] == NULL)
+			_print("setenv: Invalid variable name or the value\n");
+		else
+		{
+			char *name = argv[1], *value = argv[2];
+			int overwrite = 0;
 
-		if (_getenv(name) != NULL)
-			overwrite = 1;
-		_setenv(name, value, overwrite);
+			if (_getenv(name) != NULL)
+				overwrite = 1;
+			_setenv(name, value, overwrite);
+		}
 		return (0);
 	}
 	else if (_strcmp(argv[0], "unsetenv") == 0)
 	{
 		char *name = argv[1];
 
-		if (_getenv(name) != NULL)
-			_unsetenv(name);
+		if (_unsetenv(name) != 0)
+			_print("Environment variable not found.\n");
 		return (0);
 	}
 	else if (_strcmp(argv[0], "cd") == 0)
 	{
-		char *name_dir;
-
 		if (argv[1] == NULL)
-			name_dir = _getenv("HOME");
+			chdir(_getenv("HOME"));
 		else
-			name_dir = argv[1];
-		_cd(name_dir);
+		{
+			char *ch_dir = argv[1];
+
+			_cd(ch_dir);
+		}
+		return (0);
 	}
 	return (-1);
 }
@@ -63,7 +68,7 @@ void print_env(void)
  * @name_env: the name of environment variable
  * Return: the value of it
  */
-char *_getenv(char *env_var)
+char *_getenv(const char *env_var)
 {
 	int i = 0;
 	char *key = NULL;
@@ -79,7 +84,7 @@ char *_getenv(char *env_var)
 			if (_strcmp(env_var, key) == 0)
 			{
 				/* If a match is found, return the corresponding value*/
-				return (strtok(NULL, "\n*"));
+				return (strtok(NULL, "="));
 			}
 		}
 		i++;
@@ -100,11 +105,6 @@ int _setenv(char *varName, char *varValue, int overwrite)
 	int i = 0, len = 0;
 	char *new_env;
 
-	if (!varName || !varValue)
-	{
-		_print("setenv: Invalid variable name or the value\n");
-		return (-1);
-	}
 	while (environ[i])
 	{
 		len = _strlen(varName);
@@ -129,7 +129,7 @@ int _setenv(char *varName, char *varValue, int overwrite)
 	_strcat(new_env, varValue);
 	environ[i] = new_env;
 	environ[i + 1] = NULL;
-	return (0);
+	return (0) ;
 }
 /**
  * _unsetenv - to remove the environment variabl
@@ -141,17 +141,20 @@ int _unsetenv(char *varName)
 	int i = 0, len = 0;
 
 	if (!varName)
-		return (-1);
+	{
+		_print("Environment variable name not found.\n");
+		return (0);
+	}
 	while (environ[i])
 	{
 		len = _strlen(varName);
 		if (_strncmp(environ[i], varName, len) == 0 && environ[i][len] == '=')
 		{
-			/* Found the environment variable, remove it*/
+			/* Found the environment variable, remove it */
 			free(environ[i]);
 			environ[i] = NULL;
-			/* Shift the remaining variables to fill the gap*/
-			while (environ[i + 1])
+			/* Shift the remaining variables to fill the gap */
+			while (environ[i + 1] != NULL)
 			{
 				environ[i] = environ[i + 1];
 				i++;
@@ -160,5 +163,5 @@ int _unsetenv(char *varName)
 		}
 		i++;
 	}
-	return (0);
+	return (-1);
 }
