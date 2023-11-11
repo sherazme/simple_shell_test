@@ -7,7 +7,7 @@
  */
 int main(int ac, char **argv)
 {
-	char *sh_prompt = "(SZshell) $ ", *user_input = NULL, *user_input_cp = NULL;
+	char *sh_prompt = "$ ", *user_input = NULL, *user_input_cp = NULL;
 	size_t n = 0;
 	ssize_t user_input_len;
 	const char *delimit = " \n";
